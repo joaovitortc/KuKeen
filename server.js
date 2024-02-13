@@ -13,29 +13,39 @@
 const path = require("path");
 const express = require("express");
 const app = express();
+const expressLayouts = require('express-ejs-layouts')
+const mealkitsUtil = require('./modules/mealkit-util')
+
+//set EJS
+app.set("view engine", "ejs");
+app.set("layout", "layouts/main")
+app.use(expressLayouts);
 
 //Assets folder public (static)
 app.use(express.static(path.join(__dirname, "/assets")));
 
+
 // Add your routes here
 // e.g. app.get() { ... }
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "/views/home.html"));
-})
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, "/views/home.html"));
+// })
 
-app.get('/on-the-menu', (req, res) => {
-    res.send('On the menu page!');
-})
+    app.get('/', (req, res) => {
+         res.render("home", {featureMealKits: mealkitsUtil.getFeaturedMealKits(mealkitsUtil.getAllMealKits())});
+    })
 
-app.get('/log-in', (req, res) => {
-    res.send('Log in page!');
-})
+    app.get('/on-the-menu', (req, res) => {
+        res.render("on-the-menu", {mealObj: mealkitsUtil.getMealKitsByCategory(mealkitsUtil.getAllMealKits())});
+    })
 
-app.get('/sign-up', (req, res) => {
-    res.send('Sign up page!!');
-})
+    app.get('/sign-up', (req, res) => {
+        res.render("sign-up");
+    })
 
-
+    app.get('/log-in', (req, res) => {
+        res.render("log-in");
+    })
 
 // This use() will not allow requests to go beyond it
 // so we place it at the end of the file, after the other routes.
