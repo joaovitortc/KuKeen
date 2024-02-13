@@ -1,0 +1,69 @@
+<main>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Fresh Flavors, Delivered to Your Doorstep</h1>
+            <p>Experience the ultimate convenience of chef-inspired meal kits,<br>carefully crafted and delivered to your home</p>
+            <a href="/on-the-menu" class="abutton">Get Started</a>
+        </div>
+    </section>
+    <section class="content">
+        <div id="how-it-works">
+            <h2>How It Works</h2>
+        </div>
+        <div id="content-cards">
+            <div class="content-card">
+                <img src="/images/chef.png" alt="A chef holding a dish and showing it">
+                <h4>We create original recipes</h4>
+                <p>Our skilled chef, Joao Cunha, 
+                   creates over 40 exciting recipes every week.</p>
+            </div>
+            <div class="content-card">
+                <img src="/images/meal.png" alt="A Salmon bowl with vegetables">
+                <h4>Your flavor, your way</h4>
+                <p>Choose meals you love, like our Omega Bliss Salmon Bowl.</p>
+            </div>
+            <div class="content-card">
+                <img src="/images/delivery.png" alt="a delivery box with KuKeen written on the sides">
+                <h4>Quick box delivery</h4>
+                <p>Get your chosen premium ingredients delivered to your door.</p>
+            </div>
+            <div class="content-card">
+                <img src="/images/cooking.png" alt="a man cooking at home">
+                <h4>Easy gourmet cooking</h4>
+                <p>Become a kitchen pro in the comfort of your home.</p>
+            </div>
+        </div>
+    </section>
+    <section class="menu">
+        <div>
+            <h2>On the Menu this Week</h2>
+        </div>
+        <div class="dish-cards">
+            <%featureMealKits.forEach(mealkit => {%>
+                <%- include('partials/mealkit', mealkit) %>
+            <%}); %>    
+        </div>
+    </section>
+    <section class="container-flex">
+        <div class="container-call-to-action">
+            <img src="/images/delivery-man.svg" alt="A delivery man with a red bike">
+            <div class="container-action-text">
+                <h2 class="">Work with Us!</h2>
+                <p class="">Check out the opportunities by registering.</p>
+                <a href="/sign-up" class="abutton">Discover more</a>
+            </div>
+        </div>
+        <div class="container-call-to-action">
+            <img src="/images/store.svg" alt="A red store with a coin representing money">
+            <div class="container-action-text">
+                <h2>Become a Partner!</h2>
+                <p>Join us now by registering, and embark on your journey with delicious opportunities.</p>
+                <a href="/sign-up" class="abutton">Discover more</a>
+            </div>
+        </div>
+    </section>
+    <section class="ad-container">
+        <img src="/images/banner3.png">
+    </section>
+    
+</main>
