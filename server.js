@@ -93,9 +93,31 @@ app.use(express.urlencoded({ extended: true }));
     })
 
     app.post('/sign-up', (req,res) => {
+        const { firstName, lastName, email, password } = req.body;
+        let validationMessages = {};
 
+        let valid = true;
 
+        if (!email || email.length < 1) {
+            valid = false;
+            validationMessages.email = "An email address is required.";
+        }
 
+        if (!password || password.length < 1) {
+            valid = false;
+            validationMessages.password = "A password is required.";
+        }
+
+        if(valid) {
+            res.render('general/welcome', {title:"Welcome"});
+        } else {
+            res.render('general/sign-up', 
+            { 
+              title: "Sign up",
+              validationMessages,
+              values: req.body
+            })
+        }
     })
 
 // This use() will not allow requests to go beyond it
