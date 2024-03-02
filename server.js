@@ -32,19 +32,35 @@ app.use(express.static(path.join(__dirname, "/assets")));
 // })
 
     app.get('/', (req, res) => {
-         res.render("home", {featureMealKits: mealkitsUtil.getFeaturedMealKits(mealkitsUtil.getAllMealKits())});
+         res.render("home", {title: "Home",featureMealKits: mealkitsUtil.getFeaturedMealKits(mealkitsUtil.getAllMealKits())});
     })
 
     app.get('/on-the-menu', (req, res) => {
-        res.render("on-the-menu", {mealObj: mealkitsUtil.getMealKitsByCategory(mealkitsUtil.getAllMealKits())});
+        res.render("on-the-menu", {title: "On The Menu",mealObj: mealkitsUtil.getMealKitsByCategory(mealkitsUtil.getAllMealKits())});
     })
 
     app.get('/sign-up', (req, res) => {
-        res.render("sign-up");
-    })
+        res.render("sign-up",
+            {
+            title: "Sign Up",
+            validationMessages: {},
+            values: {
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: ""}
+            }
+    )});
+    
 
     app.get('/log-in', (req, res) => {
-        res.render("log-in");
+        res.render("log-in",  {
+            title: "Log In",
+            validationMessages: {},
+            values: {
+                email: "",
+                password: ""}
+            });
     })
 
 // This use() will not allow requests to go beyond it
