@@ -24,7 +24,7 @@ app.use(expressLayouts);
 //Assets folder public (static)
 app.use(express.static(path.join(__dirname, "/assets")));
 
-
+app.use(express.urlencoded({ extended: true }));
 // Add your routes here
 // e.g. app.get() { ... }
 // app.get('/', (req, res) => {
@@ -32,15 +32,15 @@ app.use(express.static(path.join(__dirname, "/assets")));
 // })
 
     app.get('/', (req, res) => {
-         res.render("home", {title: "Home",featureMealKits: mealkitsUtil.getFeaturedMealKits(mealkitsUtil.getAllMealKits())});
+         res.render("general/home", {title: "Home",featureMealKits: mealkitsUtil.getFeaturedMealKits(mealkitsUtil.getAllMealKits())});
     })
 
     app.get('/on-the-menu', (req, res) => {
-        res.render("on-the-menu", {title: "On The Menu",mealObj: mealkitsUtil.getMealKitsByCategory(mealkitsUtil.getAllMealKits())});
+        res.render("general/on-the-menu", {title: "On The Menu",mealObj: mealkitsUtil.getMealKitsByCategory(mealkitsUtil.getAllMealKits())});
     })
 
     app.get('/sign-up', (req, res) => {
-        res.render("sign-up",
+        res.render("general/sign-up",
             {
             title: "Sign Up",
             validationMessages: {},
@@ -54,13 +54,48 @@ app.use(express.static(path.join(__dirname, "/assets")));
     
 
     app.get('/log-in', (req, res) => {
-        res.render("log-in",  {
+        res.render("general/log-in",  {
             title: "Log In",
             validationMessages: {},
             values: {
                 email: "",
                 password: ""}
             });
+    })
+
+    app.post('/log-in', (req,res) => {
+
+        const { email, password } = req.body;
+        let validationMessages = {};
+
+        let valid = true;
+
+        if (!email || email.length < 1) {
+            valid = false;
+            validationMessages.email = "An email address is required.";
+        }
+
+        if (!password || password.length < 1) {
+            valid = false;
+            validationMessages.password = "A password is required.";
+        }
+
+        if(valid) {
+            res.render('general/welcome', {title:"Welcome"});
+        } else {
+            res.render('general/log-in', 
+            { 
+              title: "Log In",
+              validationMessages,
+              values: req.body
+            })
+        }
+    })
+
+    app.post('/sign-up', (req,res) => {
+
+
+
     })
 
 // This use() will not allow requests to go beyond it

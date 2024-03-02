@@ -1,24 +1,36 @@
 <div class="container">
     <div class="row justify-content-center text-left mt-4">
-      <form class="col-12 col-md-8 col-lg-6 form-acc">
+      <form class="col-12 col-md-8 col-lg-6 form-acc" action="/sign-up" method="post">
           <h2 class="text-center">Sign Up</h2>
           <p class="text-center">Create your account by entering your email address and choosing a password</p>
           <hr>
           <div class="form-group">
               <label for="first_name" class="mb-1">First Name</label>
               <input type="text" id="first_name" class="form-control" name="first_name">
+              <% if (validationMessages.firstName) { %>
+                <span style="color: red"><%= validationMessages.firstName %></span><br/>
+              <% } %>
           </div>
           <div class="form-group">
              <label for="last_name" class="mb-1">Last Name</label>
               <input type="text" id="last_name" class="form-control" name="last_name">
+              <% if (validationMessages.lastName) { %>
+                <span style="color: red"><%= validationMessages.lastName %></span><br/>
+              <% } %>
           </div>
           <div class="form-group">
               <label for="email" class="mb-1">Email Address</label>
               <input type="text" id="email" class="form-control" name="email">
+              <% if (validationMessages.email) { %>
+                <span style="color: red"><%= validationMessages.email %></span><br/>
+              <% } %>
           </div>
           <div class="form-group">
             <label for="password" class="mb-1">Password</label>
               <input type="password" id="password" class="form-control" name="password">
+              <% if (validationMessages.password) { %>
+                <span style="color: red"><%= validationMessages.password%></span><br/>
+              <% } %>
           </div>
           <div class="form-group text-center">
               <button type="submit" class="btn btn-block">Sign up today</button>
