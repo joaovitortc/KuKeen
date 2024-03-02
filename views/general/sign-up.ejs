@@ -5,31 +5,33 @@
           <p class="text-center">Create your account by entering your email address and choosing a password</p>
           <hr>
           <div class="form-group">
-              <label for="first_name" class="mb-1">First Name</label>
-              <input type="text" id="first_name" class="form-control" name="first_name">
+              <label for="firstName" class="mb-1">First Name</label>
+              <input type="text" id="firstName" class="form-control" name="firstName" value="<%-values.firstName%>">
               <% if (validationMessages.firstName) { %>
                 <span style="color: red"><%= validationMessages.firstName %></span><br/>
               <% } %>
           </div>
           <div class="form-group">
-             <label for="last_name" class="mb-1">Last Name</label>
-              <input type="text" id="last_name" class="form-control" name="last_name">
+             <label for="lastName" class="mb-1">Last Name</label>
+              <input type="text" id="lastName" class="form-control" name="lastName" value="<%-values.lastName%>">
               <% if (validationMessages.lastName) { %>
                 <span style="color: red"><%= validationMessages.lastName %></span><br/>
               <% } %>
           </div>
           <div class="form-group">
               <label for="email" class="mb-1">Email Address</label>
-              <input type="text" id="email" class="form-control" name="email">
+              <input type="text" id="email" class="form-control" placeholder="example@gmail.com" name="email" value="<%-values.email%>">
               <% if (validationMessages.email) { %>
                 <span style="color: red"><%= validationMessages.email %></span><br/>
               <% } %>
           </div>
           <div class="form-group">
             <label for="password" class="mb-1">Password</label>
-              <input type="password" id="password" class="form-control" name="password">
+              <input type="password" id="password" class="form-control" name="password" value="<%-values.password%>">
               <% if (validationMessages.password) { %>
-                <span style="color: red"><%= validationMessages.password%></span><br/>
+                <%validationMessages.password.forEach(message => { %>
+                  <span style="color: red"><%= message %></span><br/>
+                <% }) %>
               <% } %>
           </div>
           <div class="form-group text-center">

@@ -56,7 +56,7 @@ app.use(express.urlencoded({ extended: true }));
     app.get('/log-in', (req, res) => {
         res.render("general/log-in",  {
             title: "Log In",
-            validationMessages: {},
+            validationMessages: {password: []},
             values: {
                 email: "",
                 password: ""}
@@ -94,20 +94,54 @@ app.use(express.urlencoded({ extended: true }));
 
     app.post('/sign-up', (req,res) => {
         const { firstName, lastName, email, password } = req.body;
-        let validationMessages = {};
-
+        let validationMessages = {password: []};
         let valid = true;
+        const validEmailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!firstName || firstName.length < 1 || typeof firstName !== 'string') {
+            valid = false;
+            validationMessages.firstName = "A valid first name must be provided.";
+        }
+        if (!lastName || lastName.length < 1 || typeof lastName !== 'string') {
+            valid = false;
+            validationMessages.lastName = "A valid last name must be provided.";
+        }
 
         if (!email || email.length < 1) {
             valid = false;
             validationMessages.email = "An email address is required.";
         }
+        else if (!validEmailRegExp.test(email)) {
+            valid = false;
+            validationMessages.email = "You must provide a valid email address.";
+        }
 
         if (!password || password.length < 1) {
             valid = false;
-            validationMessages.password = "A password is required.";
+            validationMessages.password.push("A password is required.");
         }
-
+        else{
+            if(password.length < 8 || password.length > 12) {
+                valid = false;
+                validationMessages.password.push("A password must have 8 to 12 characters");
+            }
+            if(!/.*[a-z]/.test(password)){
+                valid = false;
+                validationMessages.password.push("A password must have at least one lowercase character");
+            }
+            if(!/.*[A-Z]/.test(password)){
+                valid = false;
+                validationMessages.password.push("A password must have at least one uppercase character");
+            }
+            if(!/.*\d/.test(password)){
+                valid = false;
+                validationMessages.password.push("A password must have at least one number");
+            }
+            if(!/.*[\W_]/.test(password)){
+                valid = false;
+                validationMessages.password.push("A password must have at least one symbol [?!*&^%_$#@]");
+            }
+        }
         if(valid) {
             res.render('general/welcome', {title:"Welcome"});
         } else {
