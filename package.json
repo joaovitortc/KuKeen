@@ -14,6 +14,7 @@
   "author": "Joao Vitor Topanotti da Cunha",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^8.1.1",
     "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
     "express": "^4.18.2",

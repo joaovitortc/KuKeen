@@ -63,6 +63,11 @@ app.use(express.urlencoded({ extended: true }));
             });
     })
 
+    app.get('/welcome', (req, res) => {
+        res.render("general/welcome",  {title:"Welcome"});
+            
+    })
+
     app.post('/log-in', (req,res) => {
 
         const { email, password } = req.body;
@@ -81,7 +86,7 @@ app.use(express.urlencoded({ extended: true }));
         }
 
         if(valid) {
-            res.render('general/welcome', {title:"Welcome"});
+            res.redirect('/welcome');
         } else {
             res.render('general/log-in', 
             { 
@@ -120,7 +125,7 @@ app.use(express.urlencoded({ extended: true }));
             valid = false;
             validationMessages.password.push("A password is required.");
         }
-        else{
+        else{ // having several errors at a time improve user experience
             if(password.length < 8 || password.length > 12) {
                 valid = false;
                 validationMessages.password.push("A password must have 8 to 12 characters");
@@ -143,7 +148,44 @@ app.use(express.urlencoded({ extended: true }));
             }
         }
         if(valid) {
-            res.render('general/welcome', {title:"Welcome"});
+            const sgMail = require("@sendgrid/mail");
+            sgMail.setApiKey("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");
+    
+            const msg = {
+                to: email,
+                from: "kukeen.contact@gmail.com",
+                subject: "Subject: Welcome to KuKeen - Your Culinary Adventure Awaits!",
+                html:
+                    `
+                    Dear ${firstName} ${lastName}, <br><br>
+                    Welcome to KuKeen - your ultimate destination for top-quality food ingredients delivered straight to your doorstep!<br>
+                    We are thrilled to have you on board, and we can't wait for you to embark on a delicious culinary journey with us.<br><br>
+                    Here at KuKeen, we understand the importance of high-quality ingredients in creating extraordinary meals.<br>
+                    That's why we've curated a diverse selection of premium food items that cater to every palate and culinary preference.<br><br>
+                    Your KuKeen account is now active, and you can start exploring our extensive range of meal kits,
+                    sourced from the finest producers around the world. <br> Whether you're a seasoned chef or a passionate home cook,
+                    KuKeen is here to make your cooking experience exceptional. <br><br>
+                    Thank you for choosing KuKeen. Get ready to elevate your culinary creations! <br><br>
+                    Happy cooking!<br><br>
+                    Best regards,<br>
+                    The KuKeen Team
+                    `
+            };
+    
+            sgMail.send(msg)
+                .then(() => {
+                    res.cookie('page', 'signup')
+                    res.redirect('/welcome');
+                })
+                .catch(err => {
+                    console.log(err);
+    
+                    res.render("general/sign-up", {
+                        title: "Sign Up",
+                        values: req.body,
+                        validationMessages
+                    });
+                });
         } else {
             res.render('general/sign-up', 
             { 
