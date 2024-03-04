@@ -170,7 +170,7 @@ require('dotenv').config({path:"./config/keys.env"});
                     Thank you for choosing KuKeen. Get ready to elevate your culinary creations! <br><br>
                     Happy cooking!<br><br>
                     Best regards,<br>
-                    The KuKeen Team
+                    Joao Cunha, KuKeen CEO
                     `
             };
     
