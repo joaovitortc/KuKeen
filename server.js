@@ -25,6 +25,8 @@ app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, "/assets")));
 
 app.use(express.urlencoded({ extended: true }));
+
+require('dotenv').config({path:"./config/keys.env"});
 // Add your routes here
 // e.g. app.get() { ... }
 // app.get('/', (req, res) => {
@@ -149,7 +151,7 @@ app.use(express.urlencoded({ extended: true }));
         }
         if(valid) {
             const sgMail = require("@sendgrid/mail");
-            sgMail.setApiKey("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");
+            sgMail.setApiKey(process.env.SEND_GRID_API);
     
             const msg = {
                 to: email,
@@ -174,7 +176,6 @@ app.use(express.urlencoded({ extended: true }));
     
             sgMail.send(msg)
                 .then(() => {
-                    res.cookie('page', 'signup')
                     res.redirect('/welcome');
                 })
                 .catch(err => {
