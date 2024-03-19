@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mealkitsUtil = require("../modules/mealkit-util");
 const userModel = require("../modules/userModel");
+const bcryptjs = require("bcryptjs");
 
 router.get("/", (req, res) => {
   res.render("general/home", {
@@ -40,8 +41,12 @@ router.get("/welcome", (req, res) => {
   res.render("general/welcome", { title: "Welcome" });
 });
 
+router.get("/cart", (req, res) => {
+  res.render("general/cart", { title: "Cart" });
+});
+
 router.post("/log-in", (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
   let validationMessages = {};
 
   let valid = true;
@@ -57,7 +62,56 @@ router.post("/log-in", (req, res) => {
   }
 
   if (valid) {
-    res.redirect("/welcome");
+    userModel
+      .findOne({
+        email,
+      })
+      .then((user) => {
+        if (user) {
+          // Found the user document
+          bcryptjs.compare(password, user.password).then((matched) => {
+            if (matched) {
+              // Passwords matched.
+              // Create a new session.
+              req.session.user = user;
+              console.log("User signed in");
+
+              if (role == "data-clerk") {
+                res.redirect("mealkits/list");
+              } else {
+                res.redirect("/cart");
+              }
+            } else {
+              // Passwords don't match.
+              validationMessages.password = "The email/password don't match.";
+              res.render("general/log-in", {
+                title: "Log In",
+                validationMessages,
+                values: req.body,
+              });
+            }
+          });
+        } else {
+          // User document not found
+          validationMessages.email = "This email is not registered.";
+          res.render("general/log-in", {
+            title: "Log In",
+            validationMessages,
+            values: req.body,
+          });
+        }
+      })
+      .catch((err) => {
+        // Not able to query the database.
+        console.log("Unable to query database: ", err);
+
+        validationMessages.email = "Internal server error. Try again later.";
+        res.render("general/log-in", {
+          title: "Log In",
+          validationMessages,
+          values: req.body,
+        });
+      });
   } else {
     res.render("general/log-in", {
       title: "Log In",
@@ -152,7 +206,7 @@ router.post("/sign-up", (req, res) => {
               console.log(
                 `User ${userSaved.firstName} has been added to the database.`
               );
-              
+
               //Sending confirming email
               const sgMail = require("@sendgrid/mail");
               sgMail.setApiKey(process.env.SEND_GRID_API);
@@ -171,8 +225,6 @@ router.post("/sign-up", (req, res) => {
                     validationMessages,
                   });
                 });
-
-              res.redirect("/welcome");
             })
             .catch((err) => {
               console.log(`Error adding user to the database ... ${err}`);
@@ -182,7 +234,8 @@ router.post("/sign-up", (req, res) => {
       })
       .catch((err) => {
         // Not able to query the database.
-        errors.push("Unable to query the database: " + err);
+        console.log("Unable to query the database: " + err);
+        res.redirect("general/sign-up");
       });
   } else {
     //invalid data from the user, return with error message(s)

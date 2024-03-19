@@ -1,32 +1,76 @@
 <div class="container">
-    <div class="row justify-content-center text-left mt-4">
-      <form class="col-12 col-md-8 col-lg-6 form-acc" action="/log-in" method="post">
-          <h2 class="text-center">Welcome Back</h2>
-          <hr>
-          <div class="form-group">
-              <label for="email" class="mb-1">Email Address</label>
-              <input type="text" id="email" class="form-control" name="email" value="<%-values.email%>">
-              <% if (validationMessages.email) { %>
-                <span style="color: red"><%= validationMessages.email %></span><br/>
-              <% } %>
+  <div class="row justify-content-center text-left mt-4">
+    <form
+      class="col-8 col-md-8 col-lg-6 form-acc"
+      action="/log-in"
+      method="post"
+    >
+      <h2 class="text-center">Welcome Back</h2>
+      <hr />
+      <div class="form-group">
+        <label class="mb-2 mt-1">What is your role?</label>
+        <div class="d-flex justify-content-around">
+          <div class="form-check mx-6">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="role"
+              id="data-clerk"
+              value="data-clerk"
+              checked
+            />
+            <label class="form-check-label" for="role">
+              Data clerk
+            </label>
           </div>
-          <div class="form-group">
-              <label for="password" class="mb-1">Password</label>
-              <div class="d-flex">
-                <input type="password" id="password" class="form-control" name="password" value="<%-values.password%>">
-                <i class="bi bi-eye-slash" id="togglePassword"></i>
-              </div>
-              <% if (validationMessages.password) { %>
-                <span style="color: red"><%= validationMessages.password %></span><br/>
-              <% } %>
+          <div class="form-check mx-6">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="role"
+              id="customer"
+              value="customer"
+            />
+            <label class="form-check-label" for="role"> Customer </label>
           </div>
-          <div class="form-group text-center">
-              <button type="submit" class="btn btn-block">Log in</button>
-          </div>
-          <div class="form-group text-center">
-            <p><a class="link-to-acc" href="/sign-up">Not registered yet?</a></p>
-          </div>
-      </form>
-    </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="mb-1">Email Address</label>
+        <input
+          type="text"
+          id="email"
+          class="form-control"
+          name="email"
+          value="<%-values.email%>"
+        />
+        <% if (validationMessages.email) { %>
+        <span style="color: red"><%= validationMessages.email %></span><br />
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label for="password" class="mb-1">Password</label>
+        <div class="d-flex">
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            name="password"
+            value="<%-values.password%>"
+          />
+          <i class="bi bi-eye-slash" id="togglePassword"></i>
+        </div>
+        <% if (validationMessages.password) { %>
+        <span style="color: red"><%= validationMessages.password %></span><br />
+        <% } %>
+      </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-block">Log in</button>
+      </div>
+      <div class="form-group text-center">
+        <p><a class="link-to-acc" href="/sign-up">Not registered yet?</a></p>
+      </div>
+    </form>
   </div>
-  <script src="/togglePassword.js"></script>
+</div>
+<script src="/togglePassword.js"></script>

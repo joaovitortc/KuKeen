@@ -9,4 +9,10 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/list", (req, res) => {
+    res.render("mealkits/list", {
+      title: "List"
+    });
+  });
+
 module.exports = router;

@@ -15,6 +15,7 @@ const express = require("express");
 const app = express();
 const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
+const session = require("express-session");
 
 //set EJS
 app.set("view engine", "ejs");
