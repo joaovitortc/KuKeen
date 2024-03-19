@@ -73,9 +73,12 @@ router.post("/log-in", (req, res) => {
             if (matched) {
               // Passwords matched.
               // Create a new session.
+              user.role = role;
               req.session.user = user;
-              console.log("User signed in");
 
+              console.log(user.firstName, "signed in");
+
+              //set the role of the user and redirect accordingly
               if (role == "data-clerk") {
                 res.redirect("mealkits/list");
               } else {

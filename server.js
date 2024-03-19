@@ -28,11 +28,18 @@ app.use(express.static(path.join(__dirname, "/assets")));
 app.use(express.urlencoded({ extended: true }));
 
 require('dotenv').config({path:"./config/keys.env"});
-// Add your routes here
-// e.g. app.get() { ... }
-// app.get('/', (req, res) => {
-//     res.sendFile(path.join(__dirname, "/views/home.html"));
-// })
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use((req, res, next) => {
+    // Save the user to the global EJS varialbe "user".
+    res.locals.user = req.session.user;
+    next();
+});
 
 const generalController = require("./controllers/generalController");
 const mealkitsController = require("./controllers/mealkitsController");
