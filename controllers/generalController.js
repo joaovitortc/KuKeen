@@ -145,44 +145,44 @@ router.post("/sign-up", (req, res) => {
             validationMessages,
           });
         } else {
-        //user not registered AND valid data -> save to DB
+          //user not registered AND valid data -> save to DB
           newUser
             .save()
             .then((userSaved) => {
               console.log(
                 `User ${userSaved.firstName} has been added to the database.`
               );
+              
+              //Sending confirming email
+              const sgMail = require("@sendgrid/mail");
+              sgMail.setApiKey(process.env.SEND_GRID_API);
+
+              sgMail
+                .send(createMessage(email, firstName, lastName))
+                .then(() => {
+                  res.redirect("/welcome");
+                })
+                .catch((err) => {
+                  console.log(err);
+
+                  res.render("general/sign-up", {
+                    title: "Sign Up",
+                    values: req.body,
+                    validationMessages,
+                  });
+                });
+
               res.redirect("/welcome");
             })
             .catch((err) => {
               console.log(`Error adding user to the database ... ${err}`);
-              res.render("users/register");
-            });
-
-          //Sending confirming email
-          const sgMail = require("@sendgrid/mail");
-          sgMail.setApiKey(process.env.SEND_GRID_API);
-
-          sgMail
-            .send(createMessage(email, firstName, lastName))
-            .then(() => {
-              res.redirect("/welcome");
-            })
-            .catch((err) => {
-              console.log(err);
-
-              res.render("general/sign-up", {
-                title: "Sign Up",
-                values: req.body,
-                validationMessages,
-              });
+              res.redirect("general/sign-up");
             });
         }
       })
       .catch((err) => {
         // Not able to query the database.
         errors.push("Unable to query the database: " + err);
-        console.log(errors[0]);
       });
   } else {
     //invalid data from the user, return with error message(s)
@@ -195,7 +195,7 @@ router.post("/sign-up", (req, res) => {
 });
 
 function createMessage(email, firstName, lastName) {
-  return (msg = {
+  return {
     to: email,
     from: "kukeen.contact@gmail.com",
     subject: "Subject: Welcome to KuKeen - Your Culinary Adventure Awaits!",
@@ -213,7 +213,7 @@ function createMessage(email, firstName, lastName) {
             Best regards,<br>
             Joao Cunha, KuKeen CEO
             `,
-  });
+  };
 }
 
 module.exports = router;
