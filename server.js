@@ -14,7 +14,6 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const expressLayouts = require('express-ejs-layouts')
-const mealkitsUtil = require('./modules/mealkit-util')
 
 //set EJS
 app.set("view engine", "ejs");
@@ -33,169 +32,13 @@ require('dotenv').config({path:"./config/keys.env"});
 //     res.sendFile(path.join(__dirname, "/views/home.html"));
 // })
 
-    app.get('/', (req, res) => {
-         res.render("general/home", {title: "Home",featureMealKits: mealkitsUtil.getFeaturedMealKits(mealkitsUtil.getAllMealKits())});
-    })
+const generalController = require("./controllers/generalController");
+const mealkitsController = require("./controllers/mealkitsController");
 
-    app.get('/on-the-menu', (req, res) => {
-        res.render("general/on-the-menu", {title: "On The Menu",mealObj: mealkitsUtil.getMealKitsByCategory(mealkitsUtil.getAllMealKits())});
-    })
-
-    app.get('/sign-up', (req, res) => {
-        res.render("general/sign-up",
-            {
-            title: "Sign Up",
-            validationMessages: {},
-            values: {
-                firstName: "",
-                lastName: "",
-                email: "",
-                password: ""}
-            }
-    )});
-    
-
-    app.get('/log-in', (req, res) => {
-        res.render("general/log-in",  {
-            title: "Log In",
-            validationMessages: {password: []},
-            values: {
-                email: "",
-                password: ""}
-            });
-    })
-
-    app.get('/welcome', (req, res) => {
-        res.render("general/welcome",  {title:"Welcome"});
-            
-    })
-
-    app.post('/log-in', (req,res) => {
-
-        const { email, password } = req.body;
-        let validationMessages = {};
-
-        let valid = true;
-
-        if (!email || email.length < 1) {
-            valid = false;
-            validationMessages.email = "An email address is required.";
-        }
-
-        if (!password || password.length < 1) {
-            valid = false;
-            validationMessages.password = "A password is required.";
-        }
-
-        if(valid) {
-            res.redirect('/welcome');
-        } else {
-            res.render('general/log-in', 
-            { 
-              title: "Log In",
-              validationMessages,
-              values: req.body
-            })
-        }
-    })
-
-    app.post('/sign-up', (req,res) => {
-        const { firstName, lastName, email, password } = req.body;
-        let validationMessages = {password: []};
-        let valid = true;
-        const validEmailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!firstName || firstName.length < 1 || typeof firstName !== 'string') {
-            valid = false;
-            validationMessages.firstName = "A valid first name must be provided.";
-        }
-        if (!lastName || lastName.length < 1 || typeof lastName !== 'string') {
-            valid = false;
-            validationMessages.lastName = "A valid last name must be provided.";
-        }
-
-        if (!email || email.length < 1) {
-            valid = false;
-            validationMessages.email = "An email address is required.";
-        }
-        else if (!validEmailRegExp.test(email)) {
-            valid = false;
-            validationMessages.email = "You must provide a valid email address.";
-        }
-
-        if (!password || password.length < 1) {
-            valid = false;
-            validationMessages.password.push("A password is required.");
-        }
-        else{ // having several errors at a time improve user experience
-            if(password.length < 8 || password.length > 12) {
-                valid = false;
-                validationMessages.password.push("A password must have 8 to 12 characters");
-            }
-            if(!/.*[a-z]/.test(password)){
-                valid = false;
-                validationMessages.password.push("A password must have at least one lowercase character");
-            }
-            if(!/.*[A-Z]/.test(password)){
-                valid = false;
-                validationMessages.password.push("A password must have at least one uppercase character");
-            }
-            if(!/.*\d/.test(password)){
-                valid = false;
-                validationMessages.password.push("A password must have at least one number");
-            }
-            if(!/.*[\W_]/.test(password)){
-                valid = false;
-                validationMessages.password.push("A password must have at least one symbol [?!*&^%_$#@]");
-            }
-        }
-        if(valid) {
-            const sgMail = require("@sendgrid/mail");
-            sgMail.setApiKey(process.env.SEND_GRID_API);
-    
-            const msg = {
-                to: email,
-                from: "kukeen.contact@gmail.com",
-                subject: "Subject: Welcome to KuKeen - Your Culinary Adventure Awaits!",
-                html:
-                    `
-                    Dear ${firstName} ${lastName}, <br><br>
-                    Welcome to KuKeen - your ultimate destination for top-quality food ingredients delivered straight to your doorstep!<br>
-                    We are thrilled to have you on board, and we can't wait for you to embark on a delicious culinary journey with us.<br><br>
-                    Here at KuKeen, we understand the importance of high-quality ingredients in creating extraordinary meals.<br>
-                    That's why we've curated a diverse selection of premium food items that cater to every palate and culinary preference.<br><br>
-                    Your KuKeen account is now active, and you can start exploring our extensive range of meal kits,
-                    sourced from the finest producers around the world. <br> Whether you're a seasoned chef or a passionate home cook,
-                    KuKeen is here to make your cooking experience exceptional. <br><br>
-                    Thank you for choosing KuKeen. Get ready to elevate your culinary creations! <br><br>
-                    Happy cooking!<br><br>
-                    Best regards,<br>
-                    Joao Cunha, KuKeen CEO
-                    `
-            };
-    
-            sgMail.send(msg)
-                .then(() => {
-                    res.redirect('/welcome');
-                })
-                .catch(err => {
-                    console.log(err);
-    
-                    res.render("general/sign-up", {
-                        title: "Sign Up",
-                        values: req.body,
-                        validationMessages
-                    });
-                });
-        } else {
-            res.render('general/sign-up', 
-            { 
-              title: "Sign up",
-              validationMessages,
-              values: req.body
-            })
-        }
-    })
+app.use("/", generalController);
+app.use("/sign-up", generalController);
+app.use("/log-in", generalController);
+app.use("/mealkits", mealkitsController);
 
 // This use() will not allow requests to go beyond it
 // so we place it at the end of the file, after the other routes.
