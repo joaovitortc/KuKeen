@@ -38,6 +38,7 @@ app.use(session({
 app.use((req, res, next) => {
     // Save the user to the global EJS varialbe "user".
     res.locals.user = req.session.user;
+    res.locals.role = req.session.role;
     next();
 });
 
@@ -47,6 +48,7 @@ const mealkitsController = require("./controllers/mealkitsController");
 app.use("/", generalController);
 app.use("/sign-up/", generalController);
 app.use("/log-in/", generalController);
+app.use("/log-out/", generalController);
 app.use("/mealkits/", mealkitsController);
 
 // This use() will not allow requests to go beyond it

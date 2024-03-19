@@ -22,13 +22,14 @@
         </div>
         <div class="col d-flex justify-content-end" id="container-nav-item2">
           <% if (user) { %>
-          <a class="nav-link" href="/log-out" style="color: red">Log Out</a>
-                <% if (user.role == "customer") { %>
-                    <a class="nav-link" id="log-in" href="/cart"><%-user.firstName%></a>
-                <% } else { %>
-                    <a class="nav-link" id="log-in" href="/mealkits/list"><%-user.firstName%></a>
-                <% } %> 
-          <% } else { %>
+          <a class="nav-link" href="/logout" style="color: red">Log Out</a>
+          <% if (role === "customer") { %>
+          <a class="nav-link" id="log-in" href="/cart"><%-user.firstName%></a>
+          <% } else if (role === "data-clerk") { %>
+          <a class="nav-link" id="log-in" href="/mealkits/list"
+            ><%-user.firstName%></a
+          >
+          <% } %> <% } else { %>
           <a class="nav-link" href="/sign-up" style="color: red">Sign up</a>
           <a class="nav-link" id="log-in" href="/log-in">Log in</a>
           <% } %>

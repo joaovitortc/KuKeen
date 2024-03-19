@@ -13,6 +13,16 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
 router.get("/sign-up", (req, res) => {
   res.render("general/sign-up", {
     title: "Sign Up",
@@ -73,11 +83,9 @@ router.post("/log-in", (req, res) => {
             if (matched) {
               // Passwords matched.
               // Create a new session.
-              user.role = role;
               req.session.user = user;
-
-              console.log(user.firstName, "signed in");
-
+              req.session.role = role;
+              
               //set the role of the user and redirect accordingly
               if (role == "data-clerk") {
                 res.redirect("mealkits/list");
