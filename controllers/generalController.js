@@ -189,6 +189,7 @@ router.post("/sign-up", (req, res) => {
         if (user) {
           //found email on database (user already registered)
           validationMessages.email = "This email is already in use!";
+          validationMessages.already = true;
 
           res.render("general/sign-up", {
             title: "Sign Up",
@@ -271,7 +272,7 @@ router.get("/logout", (req, res) => {
     if (err) {
       console.error("Error destroying session:", err);
     } else {
-      res.redirect("/");
+      res.redirect("/log-in");
     }
   });
 });
