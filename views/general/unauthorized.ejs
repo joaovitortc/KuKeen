@@ -1,0 +1,18 @@
+<div class="container-md text-center d-flex ml-3 mr-3 mt-4">
+  <div class="jumbotron col justify-content-center w">
+    <h1 class="display-4">401 Unauthorized</h1>
+    <% if (user && role == "customer") { %>
+    <p class="lead">This page is exclusively for authorized data clerks.</p>
+    <hr class="my-4 mx-4" />
+    <a class="btn" id="log-in" href="/" role="button">Go Back to Homepage</a>
+    <% } else if (user && role === "data-clerk") {%>
+    <p class="lead">This page is exclusively for customers.</p>
+    <hr class="my-4" />
+    <a class="btn" id="log-in" href="/" role="button">Go Back to Homepage</a>
+    <%} else if (!user) { %>
+    <p class="lead">This page is exclusively for logged in users.</p>
+    <hr class="my-4" />
+    <a class="btn" id="log-in" href="/log-in" role="button">Log In</a>
+    <%}%>
+  </div>
+</div>

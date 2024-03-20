@@ -13,16 +13,6 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/logout", (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.error("Error destroying session:", err);
-    } else {
-      res.redirect("/");
-    }
-  });
-});
-
 router.get("/sign-up", (req, res) => {
   res.render("general/sign-up", {
     title: "Sign Up",
@@ -49,10 +39,6 @@ router.get("/log-in", (req, res) => {
 
 router.get("/welcome", (req, res) => {
   res.render("general/welcome", { title: "Welcome" });
-});
-
-router.get("/cart", (req, res) => {
-  res.render("general/cart", { title: "Cart" });
 });
 
 router.post("/log-in", (req, res) => {
@@ -85,7 +71,7 @@ router.post("/log-in", (req, res) => {
               // Create a new session.
               req.session.user = user;
               req.session.role = role;
-              
+
               //set the role of the user and redirect accordingly
               if (role == "data-clerk") {
                 res.redirect("mealkits/list");
@@ -279,5 +265,23 @@ function createMessage(email, firstName, lastName) {
             `,
   };
 }
+
+router.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
+router.get("/cart", (req, res) => {
+  if (!req.session?.user || req.session?.role != "customer") {
+    res.status(401).render("general/unauthorized", { title: "401" });
+  } else {
+    res.render("general/cart", { title: "Cart" });
+  }
+});
 
 module.exports = router;
