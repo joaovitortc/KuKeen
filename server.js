@@ -16,6 +16,7 @@ const app = express();
 const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const session = require("express-session");
+const fileUpload = require("express-fileupload");
 
 //set EJS
 app.set("view engine", "ejs");
@@ -28,6 +29,9 @@ app.use(express.static(path.join(__dirname, "/assets")));
 app.use(express.urlencoded({ extended: true }));
 
 require('dotenv').config({path:"./config/keys.env"});
+
+// Set up express-fileupload.
+app.use(fileUpload());
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -51,7 +55,7 @@ app.use("/sign-up/", generalController);
 app.use("/log-in/", generalController);
 app.use("/log-out/", generalController);
 app.use("/mealkits/", mealkitsController);
-app.use("/load-data", loadDataController);
+app.use("/load-data/", loadDataController);
 
 // This use() will not allow requests to go beyond it
 // so we place it at the end of the file, after the other routes.

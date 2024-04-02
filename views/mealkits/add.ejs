@@ -1,0 +1,95 @@
+<div class="form-container">
+  <div class="row justify-content-center text-left mt-4">
+    <form
+      method="POST"
+      action="/mealkits/add"
+      enctype="multipart/form-data"
+      class="col-8 col-md-8 col-lg-6 form-acc"
+    >
+      <h1 class="text-center">Adding a Meal Kit</h1>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" name="title" id="title" required />
+      </div>
+      <div class="mb-3">
+        <label for="includes" class="form-label">Includes</label>
+        <input type="text" class="form-control" name="includes" id="includes" required />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          rows="3"
+          required
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <input type="text" class="form-control" id="category" name="category" required />
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          type="number"
+          name="price"
+          class="form-control"
+          id="price"
+          min="0.01"
+          step="0.01"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="cookingTime" class="form-label"
+          >Cooking Time (minutes)</label
+        >
+        <input
+          type="number"
+          name="cookingTime"
+          class="form-control"
+          id="cookingTime"
+          min="1"
+          step="1"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="servings" class="form-label">Servings</label>
+        <input
+          type="number"
+          class="form-control"
+          id="servings"
+          name="servings"
+          min="1"
+          step="1"
+          required
+        />
+      </div><div class="mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input
+          type="number"
+          class="form-control"
+          id="rating"
+          name="rating"
+          min="1"
+          step="1"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">Image URL</label>
+        <input type="file" class="form-control" name="imageUrl" id="imageUrl" />
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="featuredMealKit" id="featuredMealKit" />
+        <label class="form-check-label" for="featuredMealKit"
+          >Featured Meal Kit</label
+        >
+      </div><br />
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-block" id="log-in">Add Mealkit</button>
+      </div>
+    </form>
+  </div>
+</div>

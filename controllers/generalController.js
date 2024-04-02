@@ -3,14 +3,23 @@ const router = express.Router();
 const mealkitsUtil = require("../modules/mealkit-util");
 const userModel = require("../modules/userModel");
 const bcryptjs = require("bcryptjs");
+const mongoose = require('mongoose')
+const mealKitModel = require('../modules/mealKitModel')
+
 
 router.get("/", (req, res) => {
-  res.render("general/home", {
-    title: "Home",
-    featureMealKits: mealkitsUtil.getFeaturedMealKits(
-      mealkitsUtil.getAllMealKits()
-    ),
-  });
+
+  mealKitModel.find({})
+    .exec()
+    .then(data => {
+      let mealkits = data.map(mealkit=> mealkit.toObject());
+
+      res.render("general/home", {
+        title: "Home",
+        featureMealKits: mealkitsUtil.getFeaturedMealKits(mealkits),
+      });
+    })
+    .catch(err => console.log(err));
 });
 
 router.get("/sign-up", (req, res) => {

@@ -8,7 +8,7 @@
                 <h2><%= mealobj.categoryName%> Meals</h2>
                 <div class="dish-cards">
                     <%mealobj.mealkits.forEach(mealkit => {%>
-                        <%- include('../partials/mealkit', mealkit) %>
+                        <%- include('../partials/mealkit', {mealkit, list:false}) %>
                     <%}); %>    
                 </div>
             </div>

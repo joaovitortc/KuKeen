@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row justify-content-center text-center mt-4">
+    <h1>You are about to delete this Meal Kit!!!</h1>
+
+    <div class="dish-cards">
+      <%- include('../partials/mealkit', {mealkit:mealkit, list:true}) %>
+    </div>
+
+    <h4 class="mb-3">Do you want to proceed?</h4>
+    <form method="POST" action="/mealkits/remove/<%-mealkit._id%>">
+        <button type="submit" id="log-in" style="max-width: 200px; text-decoration: none; border:none;">Yes, delete it!</a>
+    </form>
+  </div>
+</div>

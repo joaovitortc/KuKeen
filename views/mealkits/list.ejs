@@ -1,7 +1,14 @@
-<div class="container text-center mt-4">
-    <div class="hero-text mt-4">
-        <br><br><br>
-        <h1>Hello data clerk, welcome to the <b>mealkist/list</b></h1>
+<div class="container mt-4">
+  <br /><br /><br />
+  <div class="dish-cards">
+    <div class="dish-card add-card">
+      <a href="/mealkits/add" id="log-in" style="text-decoration: none"
+        >Add New Mealkit</a
+      >
     </div>
+    <%mealkits.forEach(mealkit => { %>
+    <%-include('../partials/mealkit', {mealkit:mealkit, list:true}) %>
+    <%}); %>
+  </div>
 </div>
-<br><br><br>
+<br /><br /><br />
