@@ -10,9 +10,14 @@ router.get("/", (req, res) => {
 });
 
 router.get("/list", (req, res) => {
+  if (!req.session?.user || req.session?.role != "data-clerk") {
+    res.status(401).render("general/unauthorized", { title: "401" });
+  }
+  else {
     res.render("mealkits/list", {
       title: "List"
     });
+  }
   });
 
 module.exports = router;
