@@ -1,1 +1,131 @@
-<h1>get edit</h1>
+<div class="form-container">
+  <div class="row justify-content-center text-left mt-4">
+    <form
+      method="POST"
+      action="/mealkits/edit/<%-mealkit._id%>"
+      enctype="multipart/form-data"
+      class="col-8 col-md-8 col-lg-6 form-acc"
+    >
+      <h1 class="text-center">Editing a Meal Kit</h1>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          id="title"
+          value="<%-mealkit.title%>"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="includes" class="form-label">Includes</label>
+        <input
+          type="text"
+          class="form-control"
+          name="includes"
+          id="includes"
+          value="<%-mealkit.includes%>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          rows="3"
+          required
+        ><%-mealkit.description%></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <input
+          type="text"
+          class="form-control"
+          id="category"
+          name="category"
+          value="<%-mealkit.category%>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          type="number"
+          name="price"
+          class="form-control"
+          id="price"
+          min="0.01"
+          step="0.01"
+          value="<%-mealkit.price%>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="cookingTime" class="form-label"
+          >Cooking Time (minutes)</label
+        >
+        <input
+          type="number"
+          name="cookingTime"
+          class="form-control"
+          id="cookingTime"
+          min="1"
+          step="1"
+          value="<%-mealkit.cookingTime%>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="servings" class="form-label">Servings</label>
+        <input
+          type="number"
+          class="form-control"
+          id="servings"
+          name="servings"
+          min="1"
+          step="1"
+          value="<%-mealkit.servings%>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input
+          type="number"
+          class="form-control"
+          id="rating"
+          name="rating"
+          min="1"
+          step="1"
+          value="<%-mealkit.rating%>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <img id="imagePreview" src="<%-mealkit.imageUrl%>" alt="Meal Kit Image" style="max-width: 200px; max-height: 200px;" />
+        <label for="imageUrl" class="form-label">Current Image</label>
+        <input 
+        type="file" class="form-control" name="imageUrl" id="imageUrl"
+        value="<%-mealkit.imageUrl%>" />
+      </div>
+      <div class="mb-3 form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          name="featuredMealKit"
+          id="featuredMealKit"
+          <%-mealkit.featuredMealKit === true ? "checked" : ""%>
+        />
+        <label class="form-check-label" for="featuredMealKit"
+          >Featured Meal Kit</label
+        >
+      </div>
+      <br />
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-success">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const mealkitsUtil = require("../modules/mealkit-util");
 const mealKitModel = require("../modules/mealKitModel");
 const path = require("path");
+const fs = require("fs");
 
 router.get("/", (req, res) => {
   mealKitModel
@@ -61,18 +62,8 @@ router.post("/add", (req, res) => {
     rating,
   } = req.body;
 
-  console.log(req.body);
   featuredMealKit = featuredMealKit === "on" ? true : false;
-  /* title: string;
-    includes: string;
-    description: string;
-    category: string;
-    price: number;
-    cookingTime: number;
-    servings: number;
-    imageUrl: string;
-    rating: number;
-    featuredMealKit: boolean;*/
+
   const newMealKit = new mealKitModel({
     title,
     includes,
@@ -118,13 +109,8 @@ router.post("/add", (req, res) => {
               mealKitModel
                 .find({})
                 .exec()
-                .then((data) => {
-                  let mealkits = data.map((mealkit) => mealkit.toObject());
-
-                  res.render("mealkits/mealkits", {
-                    title: "MealKits",
-                    mealObj: mealkitsUtil.getMealKitsByCategory(mealkits),
-                  });
+                .then(() => {
+                  res.redirect("/mealkits/list");
                 })
                 .catch((err) =>
                   console.log("Unable to query database: " + err)
@@ -147,37 +133,43 @@ router.post("/add", (req, res) => {
 });
 
 router.get("/remove/:id", (req, res) => {
-  let id = req.params.id;
+  if (!req.session?.user || req.session?.role != "data-clerk") {
+    res.status(401).render("general/unauthorized", { title: "401" });
+  } else {
+    let id = req.params.id;
 
-  mealKitModel
-    .findOne({ _id: id })
-    .exec()
-    .then((data) => {
-      res.render("mealkits/remove", { title: "Removing", mealkit: data });
-    })
-    .catch((err) => console.log("Unable to query database: " + err));
+    mealKitModel
+      .findOne({ _id: id })
+      .exec()
+      .then((data) => {
+        res.render("mealkits/remove", { title: "Removing", mealkit: data });
+      })
+      .catch((err) => console.log("Unable to query database: " + err));
+  }
 });
 
 router.post("/remove/:id", (req, res) => {
   let id = req.params.id;
   mealKitModel
-    .deleteOne({ _id: id })
-    .then(() => {
+    .findOneAndDelete({ _id: id })
+    .then((deletedMealKit) => {
       console.log("Deleted the mealKit document for: " + id);
 
-      mealKitModel
-        .find({})
-        .exec()
-        .then((data) => {
-          let mealkits = data.map((mealkit) => mealkit.toObject());
+      // Delete the image file from the directory
+      const imagePath = path.join(
+        __dirname,
+        "../assets/images",
+        path.basename(deletedMealKit.imageUrl)
+      );
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error("Error deleting image file: ", err);
+        } else {
+          console.log("Deleted image file: ", imagePath);
+        }
+      });
 
-          res.render("mealkits/list", {
-            title: "List",
-            mealkits: mealkits,
-            list: true
-          });
-        })
-        .catch((err) => console.log("Unable to query database: " + err));
+      res.redirect("/mealkits/list");
     })
     .catch((err) => {
       console.log(
@@ -188,11 +180,82 @@ router.post("/remove/:id", (req, res) => {
 });
 
 router.get("/edit/:id", (req, res) => {
-  let id = req.params.id;
+  if (!req.session?.user || req.session?.role != "data-clerk") {
+    res.status(401).render("general/unauthorized", { title: "401" });
+  } else {
+    let id = req.params.id;
 
-  res.render("mealkits/edit", { title: "Editing" });
+    mealKitModel
+      .findOne({ _id: id })
+      .exec()
+      .then((data) => {
+        res.render("mealkits/edit", { title: "Editing", mealkit: data });
+      })
+      .catch((err) => console.log("Unable to query database: " + err));
+  }
 });
 
-router.post("/edit/:id", (req, res) => {});
+router.post("/edit/:id", (req, res) => {
+  let {
+    title,
+    includes,
+    description,
+    category,
+    price,
+    cookingTime,
+    servings,
+    imageUrl,
+    featuredMealKit,
+    rating,
+  } = req.body;
+
+  let id = req.params.id;
+  featuredMealKit = featuredMealKit === "on" ? true : false;
+
+  mealKitModel
+    .updateOne(
+      { _id: id },
+      {
+        $set: {
+          title,
+          includes,
+          description,
+          category,
+          price,
+          cookingTime,
+          servings,
+          imageUrl,
+          featuredMealKit,
+          rating,
+        },
+      }
+    )
+    .then(() => {
+      console.log("Updated the mealKit document for: " + title);
+      const ImgFile = req.files.imageUrl;
+      const uniqueName = `image-url-${id}${path.parse(ImgFile.name).ext}`;
+
+      ImgFile.mv(`assets/images/${uniqueName}`).then(() => {
+        mealKitModel
+          .updateOne(
+            {
+              _id: id,
+            },
+            {
+              imageUrl: `/images/${uniqueName}`,
+            }
+          )
+          .then(() => {
+            res.redirect("/mealkits/list");
+          });
+      });
+    })
+    .catch((err) => {
+      console.log(
+        "Couldn't update the mealKit document for: " + id + "\n" + err
+      );
+      res.redirect("/");
+    });
+});
 
 module.exports = router;
