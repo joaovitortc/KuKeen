@@ -3,12 +3,16 @@
   <div class="card-footer border-top border-light p-4">
     <h4 class="card-title"><%=mealkit.title%></h4>
     <p class="font-weight-light text-gray mt-2"><%=mealkit.description%></p>
+
     <div class="d-flex mt-3">
+      <% for(let i = 1; i < 6; i++) {%> 
+        <%if (i < mealkit.rating ) { %>
       <i class="star fas fa-star text-warning mr-1"></i>
-      <i class="star fas fa-star text-warning mr-1"></i>
-      <i class="star fas fa-star text-warning mr-1"></i>
-      <i class="star fas fa-star text-warning mr-1"></i>
-      <i class="star fas fa-star text-warning"></i>
+      <%} else if (i - mealkit.rating < 0.5){%>
+      <i class="fas fa-star-half-alt text-warning"></i>
+      <%}else{%>
+      <i class="fa-regular fa-star text-warning"></i>
+      <%}}%>
       <span
         class="ml-2 rounded-pill bg-secondary text-light px-2 small text-sm"
         style="margin-left: 5px"
@@ -19,10 +23,18 @@
       <span class="card-bct-price h5 mb-0 text-gray">$<%=mealkit.price%></span>
       <% if(list) { %>
 
-      <a class="btn btn-xs card-edit" id="log-in" href="/mealkits/edit/<%=mealkit._id%>">
+      <a
+        class="btn btn-xs card-edit"
+        id="log-in"
+        href="/mealkits/edit/<%=mealkit._id%>"
+      >
         <i class="bi bi-pen"></i>
       </a>
-      <a class="btn btn-xs card-trash" id="log-in" href="/mealkits/remove/<%=mealkit._id%>">
+      <a
+        class="btn btn-xs card-trash"
+        id="log-in"
+        href="/mealkits/remove/<%=mealkit._id%>"
+      >
         <i class="bi bi-trash"></i>
       </a>
 

@@ -38,7 +38,8 @@
           required
         ><%-mealkit.description%></textarea>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 d-flex justify-content-around">
+        <div>
         <label for="category" class="form-label">Category</label>
         <input
           type="text"
@@ -49,66 +50,69 @@
           required
         />
       </div>
-      <div class="mb-3">
-        <label for="price" class="form-label">Price</label>
-        <input
-          type="number"
-          name="price"
-          class="form-control"
-          id="price"
-          min="0.01"
-          step="0.01"
-          value="<%-mealkit.price%>"
-          required
-        />
+        <div>
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            name="price"
+            class="form-control"
+            id="price"
+            min="0.01"
+            step="0.01"
+            value="<%-mealkit.price%>"
+            required
+          />
+        </div>
+      </div>
+      <div class="mb-5 d-flex justify-content-around">
+        <div class="">
+          <label for="cookingTime" class="form-label"
+            >Cooking Time</label
+          >
+          <input
+            type="number"
+            name="cookingTime"
+            class="form-control"
+            id="cookingTime"
+            min="1"
+            step="1"
+            value="<%-mealkit.cookingTime%>"
+            required
+          />
+        </div>
+        <div>
+          <label for="servings" class="form-label">Servings</label>
+          <input
+            type="number"
+            class="form-control"
+            id="servings"
+            name="servings"
+            min="1"
+            step="1"
+            value="<%-mealkit.servings%>"
+            required
+          />
+        </div>
       </div>
       <div class="mb-3">
-        <label for="cookingTime" class="form-label"
-          >Cooking Time (minutes)</label
-        >
-        <input
-          type="number"
-          name="cookingTime"
-          class="form-control"
-          id="cookingTime"
-          min="1"
-          step="1"
-          value="<%-mealkit.cookingTime%>"
-          required
-        />
+        <div class="rate">
+          <input type="radio" id="star5" name="rating" value="5" />
+          <label for="star5" title="text">5 stars</label>
+          <input type="radio" id="star4" name="rating" value="4" />
+          <label for="star4" title="text">4 stars</label>
+          <input type="radio" id="star3" name="rating" value="3" />
+          <label for="star3" title="text">3 stars</label>
+          <input type="radio" id="star2" name="rating" value="2" />
+          <label for="star2" title="text">2 stars</label>
+          <input type="radio" id="star1" name="rating" value="1" />
+          <label for="star1" title="text">1 star</label>
+        </div>
       </div>
       <div class="mb-3">
-        <label for="servings" class="form-label">Servings</label>
-        <input
-          type="number"
-          class="form-control"
-          id="servings"
-          name="servings"
-          min="1"
-          step="1"
-          value="<%-mealkit.servings%>"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label for="rating" class="form-label">Rating</label>
-        <input
-          type="number"
-          class="form-control"
-          id="rating"
-          name="rating"
-          min="1"
-          step="1"
-          value="<%-mealkit.rating%>"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <img id="imagePreview" src="<%-mealkit.imageUrl%>" alt="Meal Kit Image" style="max-width: 200px; max-height: 200px;" />
+        <img id="imagePreview" class="mb-1" src="<%-mealkit.imageUrl%>" alt="Meal Kit Image" style="max-width: 210.6px; max-height: 210px;" />
         <label for="imageUrl" class="form-label">Current Image</label>
         <input 
-        type="file" class="form-control" name="imageUrl" id="imageUrl"
-        value="<%-mealkit.imageUrl%>" />
+        type="file" class="form-control" name="imageUrl" id="imageUrl"/>
       </div>
       <div class="mb-3 form-check">
         <input

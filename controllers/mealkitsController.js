@@ -211,7 +211,8 @@ router.post("/edit/:id", (req, res) => {
 
   let id = req.params.id;
   featuredMealKit = featuredMealKit === "on" ? true : false;
-
+  rating = (Number(rating) + Math.random()).toFixed(2)
+  console.log(rating)
   mealKitModel
     .updateOne(
       { _id: id },
@@ -232,6 +233,9 @@ router.post("/edit/:id", (req, res) => {
     )
     .then(() => {
       console.log("Updated the mealKit document for: " + title);
+
+      //if a new image was provided, update it
+      if(imageUrl) {
       const ImgFile = req.files.imageUrl;
       const uniqueName = `image-url-${id}${path.parse(ImgFile.name).ext}`;
 
@@ -249,6 +253,11 @@ router.post("/edit/:id", (req, res) => {
             res.redirect("/mealkits/list");
           });
       });
+
+    } else{
+      // no new image to update
+      res.redirect("/mealkits/list");
+    }
     })
     .catch((err) => {
       console.log(

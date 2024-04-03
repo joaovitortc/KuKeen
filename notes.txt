@@ -1,0 +1,5 @@
+
+-> BUG:  User can upload any document 
+-> BUG:  Editing the mealkit image doesn't delete the previous one.
+
+-FIX : rating mealkits stars

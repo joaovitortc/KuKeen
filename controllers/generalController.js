@@ -3,23 +3,22 @@ const router = express.Router();
 const mealkitsUtil = require("../modules/mealkit-util");
 const userModel = require("../modules/userModel");
 const bcryptjs = require("bcryptjs");
-const mongoose = require('mongoose')
-const mealKitModel = require('../modules/mealKitModel')
-
+const mongoose = require("mongoose");
+const mealKitModel = require("../modules/mealKitModel");
 
 router.get("/", (req, res) => {
-
-  mealKitModel.find({})
+  mealKitModel
+    .find({})
     .exec()
-    .then(data => {
-      let mealkits = data.map(mealkit=> mealkit.toObject());
+    .then((data) => {
+      let mealkits = data.map((mealkit) => mealkit.toObject());
 
       res.render("general/home", {
         title: "Home",
         featureMealKits: mealkitsUtil.getFeaturedMealKits(mealkits),
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 });
 
 router.get("/sign-up", (req, res) => {
@@ -83,6 +82,8 @@ router.post("/log-in", (req, res) => {
 
               //set the role of the user and redirect accordingly
               if (role == "data-clerk") {
+                console.log(user, " is: ", role);
+                console.log("redirecting to mealkits/list");
                 res.redirect("mealkits/list");
               } else {
                 res.redirect("/cart");
