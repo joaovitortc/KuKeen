@@ -6,9 +6,9 @@
 
     <div class="d-flex mt-3">
       <% for(let i = 1; i < 6; i++) {%> 
-        <%if (i < mealkit.rating ) { %>
+        <%if (i <= mealkit.rating ) { %>
       <i class="star fas fa-star text-warning mr-1"></i>
-      <%} else if (i - mealkit.rating < 0.5){%>
+      <%} else if (i - mealkit.rating < 0.5 ){%>
       <i class="fas fa-star-half-alt text-warning"></i>
       <%}else{%>
       <i class="fa-regular fa-star text-warning"></i>

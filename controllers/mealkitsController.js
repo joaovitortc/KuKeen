@@ -211,8 +211,13 @@ router.post("/edit/:id", (req, res) => {
 
   let id = req.params.id;
   featuredMealKit = featuredMealKit === "on" ? true : false;
-  rating = (Number(rating) + Math.random()).toFixed(2)
-  console.log(rating)
+
+  if(rating){
+    // if a new rating was provided, I want to randomize -> the data clerk shouldn't be able to change the rating completely, 
+    // but I still wanted to give the option to view the changes at the list.
+    rating = (Number(rating) + Math.random()).toFixed(2)
+  }
+  
   mealKitModel
     .updateOne(
       { _id: id },
