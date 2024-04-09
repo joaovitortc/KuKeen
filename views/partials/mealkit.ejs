@@ -21,27 +21,29 @@
     </div>
     <div class="card-bct">
       <span class="card-bct-price h5 mb-0 text-gray">$<%=mealkit.price%></span>
-      <% if(list) { %>
+    
+      <% if(user) { %>
+        <% if(role == 'data-clerk') { %>
+        <a
+          class="btn btn-xs card-edit"
+          id="log-in"
+          href="/mealkits/edit/<%=mealkit._id%>"
+        >
+          <i class="bi bi-pen"></i>
+        </a>
+        <a
+          class="btn btn-xs card-trash"
+          id="log-in"
+          href="/mealkits/remove/<%=mealkit._id%>"
+        >
+          <i class="bi bi-trash"></i>
+        </a>
 
-      <a
-        class="btn btn-xs card-edit"
-        id="log-in"
-        href="/mealkits/edit/<%=mealkit._id%>"
-      >
-        <i class="bi bi-pen"></i>
-      </a>
-      <a
-        class="btn btn-xs card-trash"
-        id="log-in"
-        href="/mealkits/remove/<%=mealkit._id%>"
-      >
-        <i class="bi bi-trash"></i>
-      </a>
-
-      <%} else { %>
-      <a class="btn btn-xs" id="log-in" href="/cart">
-        <span class="fas fa-cart-plus mr-2"></span> Add to cart
-      </a>
+        <%} else { %>
+        <button type="button" class="btn btn-xs" id="log-in" onclick="window.location.href='/cart/add/<%=mealkit._id%>'">
+          <span class="fas fa-cart-plus mr-2"></span> Add to cart
+        </button>
+        <%}%>
       <%}%>
     </div>
   </div>

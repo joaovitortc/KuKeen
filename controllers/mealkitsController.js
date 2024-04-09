@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 
       res.render("mealkits/mealkits", {
         title: "MealKits",
-        mealObj: mealkitsUtil.getMealKitsByCategory(mealkits),
+        mealObj: mealkitsUtil.getMealKitsByCategory(mealkits)
       });
     })
     .catch((err) => console.log(err));

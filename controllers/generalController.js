@@ -287,12 +287,5 @@ router.get("/logout", (req, res) => {
   });
 });
 
-router.get("/cart", (req, res) => {
-  if (!req.session?.user || req.session?.role != "customer") {
-    res.status(401).render("general/unauthorized", { title: "401" });
-  } else {
-    res.render("general/cart", { title: "Cart" });
-  }
-});
 
 module.exports = router;

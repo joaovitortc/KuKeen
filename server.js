@@ -49,6 +49,7 @@ app.use((req, res, next) => {
 const generalController = require("./controllers/generalController");
 const mealkitsController = require("./controllers/mealkitsController");
 const loadDataController = require("./controllers/loadDataController");
+const cartController = require("./controllers/cartController");
 
 app.use("/", generalController);
 app.use("/sign-up/", generalController);
@@ -56,6 +57,7 @@ app.use("/log-in/", generalController);
 app.use("/log-out/", generalController);
 app.use("/mealkits/", mealkitsController);
 app.use("/load-data/", loadDataController);
+app.use("/cart/", cartController);
 
 // This use() will not allow requests to go beyond it
 // so we place it at the end of the file, after the other routes.

@@ -2,8 +2,20 @@
 <div class="container text-center mt-4">
     <div class="hero-text mt-4">
         <br><br><br>
+        
         <h1>Hello customer, welcome to the <b>cart</b></h1>
         <p class="fs-6">Get ready to elevate your culinary creations!</p>
+        <h2><%-viewModel.message%></h2>
+        <%-console.log(viewModel.meals.length)%>
+        <%if(viewModel.meals) {%>
+            <%viewModel.meals.forEach(cartMeal => {%>
+                    <h2><%= cartMeal.id%> id</h2>
+                    <div class="dish-cards">
+                        <%- include('../partials/mealkit', {mealkit: cartMeal.meal, list:false}) %>
+                        <p>Quantity: <%=cartMeal.quantity%></p>  
+                    </div>
+            <%}); %>    
+        <%};%> 
     </div>
 </div>
 <br><br><br>
