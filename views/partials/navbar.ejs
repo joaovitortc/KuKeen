@@ -24,10 +24,18 @@
           <% if (user) { %>
           <a class="nav-link" href="/logout" style="color: red">Log Out</a>
           <% if (role === "customer") { %>
-          <a class="nav-link" id="log-in" href="/cart"><%-user.firstName%></a>
+          <a class="nav-link" id="log-in" href="/cart">
+            <span class="fas fa-cart-plus mr-2"></span> 
+            <%-user.firstName%>'s Cart <span class="cart-number"> <% 
+              let totalQuantity = 0;
+              cart.forEach(cartMeal => { 
+                  totalQuantity += cartMeal.quantity; 
+              }); 
+              %>
+              <%= totalQuantity %></span></a>
           <% } else if (role === "data-clerk") { %>
           <a class="nav-link" id="log-in" href="/mealkits/list"
-            ><%-user.firstName%></a
+            >Data Manipulation</a
           >
           <% } %> <% } else { %>
           <a class="nav-link" href="/sign-up" style="color: red">Sign up</a>

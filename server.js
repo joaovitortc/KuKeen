@@ -43,6 +43,7 @@ app.use((req, res, next) => {
     // Save the user to the global EJS varialbe "user".
     res.locals.user = req.session.user;
     res.locals.role = req.session.role;
+    res.locals.cart = req.session.cart || [];
     next();
 });
 

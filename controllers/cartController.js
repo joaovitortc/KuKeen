@@ -155,8 +155,7 @@ router.get("/checkout", (req, res) => {
             cart.forEach((cartMeal) => {
                 cartTotal += cartMeal.meal.price * cartMeal.quantity;
               });
-    
-        console.log(user.email, user.firstName, user.lastName, cart, cartTotal)
+
         //Send an email
         const sgMail = require("@sendgrid/mail");
               sgMail.setApiKey(process.env.SEND_GRID_API);

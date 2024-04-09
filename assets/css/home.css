@@ -18,6 +18,7 @@ body {
   padding: 10px;
   max-height: 44px;
   white-space: nowrap;
+  position: relative;
 }
 
 .nav-link:hover {
@@ -580,4 +581,16 @@ label.radio input:checked + span {
 
 .spec {
   font-size: 11px;
+}
+
+.cart-number {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
+  font-size: 0.75em;
+  font-weight: bold;
 }
