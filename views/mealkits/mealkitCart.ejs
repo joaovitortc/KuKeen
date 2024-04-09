@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+<div class="d-flex flex-row"><img class="rounded" src="<%-mealkit.meal.imageUrl%>" style="width: 40px; height:60px; object-fit: cover;">
+    <div class="mx-2">
+        <span class="font-weight-bold d-block"><%-mealkit.meal.title%></span>
+        <span class="spec"><%-mealkit.meal.includes%></span></div>
+</div>
+<div class="d-flex flex-row align-items-center">
+    <span class="d-block mx-3 font-weight-bold">$<%-mealkit.meal.price%></span>
+    <button class="btn btn-xs" style="color:red" onclick="window.location.href='cart/remove/<%=mealkit.id%>'">-</button>
+    <span class="d-block"><%-mealkit.quantity%></span>
+    <button class="btn btn-xs" style="color:rgb(27, 184, 27)" onclick="window.location.href='cart/add/<%=mealkit.id%>'">+</button>
+    <span class="d-block mx-3">$<%-(mealkit.quantity * mealkit.meal.price).toFixed(2)%></span>
+    <a style="color:red" href="/cart/delete/<%=mealkit.id%>" class="btn btn-xs"><i class="bi bi-trash"></i></a>
+
+</div>    
+</div>

@@ -222,7 +222,7 @@ router.post("/sign-up", (req, res) => {
               sgMail
                 .send(createMessage(email, firstName, lastName))
                 .then(() => {
-                  res.redirect("/welcome");
+                  res.redirect("/log-in");
                 })
                 .catch((err) => {
                   console.log(err);
