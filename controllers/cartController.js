@@ -178,7 +178,6 @@ function createMessage(email, firstName, lastName, cart, total) {
     let cartDetails = cart.map(item => `
       <p>
         Title: ${item.meal.title}<br>
-        Ingredients: ${item.meal.ingredients}<br>
         Includes: ${item.meal.includes}<br>
         Servings: ${item.meal.servings}<br>
         Quantity: ${item.quantity}<br>
