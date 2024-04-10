@@ -22,7 +22,6 @@
     <div class="card-bct">
       <span class="card-bct-price h5 mb-0 text-gray">$<%=mealkit.price%></span>
     
-      <% if(user) { %>
         <% if(role == 'data-clerk') { %>
         <a
           class="btn btn-xs card-edit"
@@ -44,7 +43,7 @@
           <span class="fas fa-cart-plus mr-2"></span> Add to cart
         </button>
         <%}%>
-      <%}%>
+
     </div>
   </div>
 </div>
