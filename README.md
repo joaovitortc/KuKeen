@@ -13,5 +13,3 @@ GitHub Repo   : https://github.com/joaovitortc/web322-jvtopanotti-da-cunha
 Cyclic URL    : https://cute-pear-abalone-vest.cyclic.app
 
 
-Assignment4 starting
-
