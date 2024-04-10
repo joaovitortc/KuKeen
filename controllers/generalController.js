@@ -80,6 +80,10 @@ router.post("/log-in", (req, res) => {
               req.session.user = user;
               req.session.role = role;
 
+              //set the user and role to be used in the views
+              res.locals.user = user;
+              res.locals.role = role;
+              
               //set the role of the user and redirect accordingly
               if (role == "data-clerk") {
                 console.log(user, " is: ", role);
