@@ -38,6 +38,6 @@ The project is fully deployed and accessible through the following endpoints:
 - Joao Vitor Topanotti da Cunha
 
 ## Acknowledgements
-Special thanks to Nick Romanidis (https://github.com/nick-romanidis) for guidance and support throughout the development process.
+Special thanks to [Nick Romanidis](https://github.com/nick-romanidis) for guidance and support throughout the development process.
 
 ---
