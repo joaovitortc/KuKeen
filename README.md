@@ -24,8 +24,8 @@ Kukeen is a full-stack web application designed to facilitate meal preparation w
 
 ## Deployment
 The project is fully deployed and accessible through the following endpoints:
-- **Cyclic**: https://cute-pear-abalone-vest.cyclic.app
 - **Render**: https://kukeen.onrender.com/
+- - **Cyclic**: https://cute-pear-abalone-vest.cyclic.app <img src="https://cdn-icons-png.flaticon.com/512/7801/7801791.png"> Might be down
 
 ## Usage
 1. Sign up for an account as either a customer or an admin.
