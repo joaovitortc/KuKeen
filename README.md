@@ -1,8 +1,8 @@
 # Kukeen: Full-stack Web Application
 
-<p align="right">
+<p align="center">
   <a href="https://kukeen.onrender.com/" target="_blank">
-    <img src="https://img.shields.io/badge/Visit%20The%20Website-8A2BE2" target="_blank" />
+    <img src="https://img.shields.io/badge/Visit%20The%20Website-red" target="_blank" />
   </a>
 </p>
 
