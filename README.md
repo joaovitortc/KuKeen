@@ -2,8 +2,8 @@
 
 <p align="center">
   <br/>
-  <a href="https://kukeen.onrender.com/" style="width:100px;height:auto;" target="_blank">
-    <img src="https://img.shields.io/badge/Visit%20The%20Website-red" target="_blank" style="width:100px;height:auto;" />
+  <a href="https://kukeen.onrender.com/" style="width:150px;height:auto;" target="_blank">
+    <img src="https://img.shields.io/badge/Visit%20The%20Website-red" target="_blank" style="width:150px;" />
   </a>
 </p>
 
