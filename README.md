@@ -3,8 +3,7 @@
 <p align="center">
   <br/>
   <a href="https://kukeen.onrender.com/" style="width:150px;height:auto;" target="_blank">
-    <img src="https://img.shields.io/badge/Visit%20The%20Website-red?logo=data:image/png;base64,https://media.istockphoto.com/id/1160281298/vector/external-link-icon-arrow-showing-leaving-the-app-to-visit-an-external-website.jpg?s=612x612&w=0&k=20&c=nQuIvbt64rAAse8vMf0K41Mj_sN7hWgDLS1Zfv5GQcE=
-" target="_blank" style="width:125px;" />
+    <img src="https://img.shields.io/badge/Visit%20The%20Website-red?logo=github" target="_blank" style="width:125px;" />
   </a>
 </p>
 
