@@ -1,11 +1,18 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <h1 style="margin: 0;">
-    <span style="color: #ff0000;">KuKeen</span>: Full-stack Web Application
-  </h1>
-  <a href="https://kukeen.onrender.com/" target="_blank">
-    <img src="https://img.shields.io/badge/Visit%20The%20Website-red" alt="Visit the Website" style="width:125px;" />
-  </a>
-</div>
+<table style="width: 100%; border: none;">
+  <tr>
+    <td style="border: none;">
+      <h1 style="margin: 0;">
+        <span style="color: #ff0000;">KuKeen</span>: Full-stack Web Application
+      </h1>
+    </td>
+    <td style="text-align: right; border: none;">
+      <a href="https://kukeen.onrender.com/" target="_blank">
+        <img src="https://img.shields.io/badge/Visit%20The%20Website-red" alt="Visit the Website" style="width:125px;" />
+      </a>
+    </td>
+  </tr>
+</table>
+
 
 
 ## Overview
