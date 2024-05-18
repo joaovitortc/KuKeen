@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
-  <h1 style="margin: 0;">**Kukeen: Full-stack Web Application</h1>
+  <h1 style="margin: 0;"><strong>Kukeen</strong>: Full-stack Web Application</h1>
   <a href="https://kukeen.onrender.com/" target="_blank">
     <img src="https://img.shields.io/badge/Visit%20The%20Website-red" alt="Visit the Website" style="width:125px;" />
   </a>
