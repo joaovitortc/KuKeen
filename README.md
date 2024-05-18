@@ -1,4 +1,4 @@
-<table style="width: 100%; border: none;">
+<table style="width: 100%; border-collapse: collapse; border: none;">
   <tr>
     <td style="border: none;">
       <h1 style="margin: 0;">
