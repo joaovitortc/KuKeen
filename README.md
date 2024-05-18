@@ -2,7 +2,7 @@
   <tr>
     <td style="border: none;">
       <h1 style="margin: 0;">
-        <span style="color: #ff0000;">KuKeen</span>: Full-stack Web Application
+        <span style="color: #ff0000;">KuKeen</span>: Full-stack Web Application                 
       </h1>
     </td>
     <td style="text-align: right; border: none;">
