@@ -1,9 +1,8 @@
 # Kukeen: Full-stack Web Application
 
 <p align="right">
-  <a href="https://www.linkedin.com/in/joaovitortc/" target="_blank">
-    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Kick</title><path d="M1.333 0h8v5.333H12V2.667h2.667V0h8v8H20v2.667h-2.667v2.666H20V16h2.667v8h-8v-2.667H12v-2.666H9.333V24h-8Z"/></svg>
-    <img src="https://img.shields.io/badge/visit_website?logo?" target="_blank" />
+  <a href="https://kukeen.onrender.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Visit%20The%20Website-8A2BE2" target="_blank" />
   </a>
 </p>
 
