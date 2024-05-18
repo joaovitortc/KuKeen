@@ -3,7 +3,7 @@
 <p align="center">
   <br/>
   <a href="https://kukeen.onrender.com/" target="_blank" style="width:150px;height:auto;">
-    <img src="https://img.shields.io/badge/Visit%20The%20Website-red" target="_blank" />
+    <img src="https://img.shields.io/badge/Visit%20The%20Website-red" target="_blank" style="width:150px;height:auto;" />
   </a>
 </p>
 
