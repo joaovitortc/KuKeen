@@ -50,6 +50,7 @@ Kukeen is a full-stack web application designed to facilitate meal preparation w
 It allows users to sign up and log in as either customers or administrators. 
 - Customers can purchase mealkits, manage their cart, and perform other related actions,
 - Administrators can perform CRUD (Create, Read, Update, Delete) operations on the mealkits inventory. </br>
+
 The application follows the Model-View-Controller (MVC) pattern for efficient organization and separation of concerns.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
