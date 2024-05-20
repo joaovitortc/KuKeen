@@ -112,7 +112,9 @@ KuKeen/
 This section outlines some of the features of the website.
 
 # Log in system
-The website employs *bcrypt.js* to securely hash and store user passwords in MongoDB. Only registered users are permitted to log in.
+The website employs *bcrypt.js* to securely hash and store user passwords in MongoDB. 
+Only registered users are permitted to log in.
+
 <img src="assets/log-in.png" alt="Logo" width="300">
 
 # Url Protection
