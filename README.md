@@ -111,23 +111,23 @@ KuKeen/
 
 This section outlines some of the features of the website.
 
-# Log in system
+### Log in system
 The website employs *bcrypt.js* to securely hash and store user passwords in MongoDB. 
 Only registered users are permitted to log in.
 
 <img src="assets/log-in.png" alt="Logo" width="300">
 
-# Url Protection
+### Url Protection
 I utilized *express-session* to secure endpoints, ensuring that only logged-in users can access certain pages. This also prevents customers from accessing administrator pages.
 
 <img src="assets/unauthorized.png" alt="Logo" >
 
-# Admin
+### Admin
 Administrators have the capability to create, delete, and edit meal kits through the admin panel.
 
 <img src="assets/cru.png" alt="Logo" >
 
-# Cart
+### Cart
 Sessions are used to track user activity, maintaining the contents of the cart even if the user leaves the website. Users can also modify the quantity, add / remove items on their cart. By simulating the placement of an order, and email is sent to the registered user.
 
 <img src="assets/cart.png" alt="Logo" >
