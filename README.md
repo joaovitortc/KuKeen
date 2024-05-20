@@ -8,7 +8,7 @@
     <img src="assets/images/store.svg" alt="Logo" width="160" height="160">
   </a>
 
-  <h3 align="center" style="font-size:15em;">KuKeen</h3>
+  <h3 align="center" style="font-size:200px;">KuKeen</h3>
 
   <p align="center">
     A Full-stack Web Application
