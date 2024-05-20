@@ -126,7 +126,7 @@ Administrators have the capability to create, delete, and edit meal kits through
 <img src="assets/cru.png" alt="Logo" >
 
 # Cart
-Sessions are used to track user activity, maintaining the contents of the cart even if the user leaves the website. Users can also modify the quantity of items in their cart.
+Sessions are used to track user activity, maintaining the contents of the cart even if the user leaves the website. Users can also modify the quantity, add / remove items on their cart. By simulating the placement of an order, and email is sent to the registered user.
 
 <img src="assets/cart.png" alt="Logo" >
 
