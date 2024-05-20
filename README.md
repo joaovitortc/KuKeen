@@ -70,36 +70,66 @@ The application follows the Model-View-Controller (MVC) pattern for efficient or
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-##File Structure
+## File Structure
 
 ```bash
-project-name/
+KuKeen/
 │
-├── src/
-│   ├── main.py           # The main script to run the project
-│   ├── module1.py        # First module
-│   └── module2.py        # Second module
+├── assets/
+│   ├── css/         
+│   ├── images/       
+│   └── togglePassword.js       # Responsible for toggling the passsword visibility
 │
-├── tests/
-│   ├── test_main.py      # Tests for the main script
-│   └── test_module1.py   # Tests for the first module
+├── controllers/
+│   ├── cartController.js     
+│   └── generalController.js  
+│   └── loadDataController.js   # Endpoint responsible to restart the database (emergency recovery)
+│   └── mealkitsController.js
 │
-├── docs/
-│   ├── index.md          # Project documentation index
-│   └── api.md            # API documentation
+├── modules/
+│   ├── mealKitModel.js          
+│   └── mealkitUtil.js
+│   └── userModel.js        
 │
-├── .gitignore            # Git ignore file
-├── README.md             # Project README file
-├── requirements.txt      # Python dependencies
-└── setup.py              # Setup script for packaging
+├── views/
+│   ├── general/                # Contain all the general views (home.ejs, cart.ejs, etc)
+│   ├── layouts/
+│       ├── main.ejs            # Layout used in every page (using EJS-Layouts)
+│   ├── mealkits/               # Contain all the mealkit's related views
+│   ├── partials/
+│       ├── footer.ejs
+│       └── mealkits.ejs
+│       └── navbar.ejs
+│
+├── .gitignore                  # Git ignore file
+├── README.md                   # Project README file
+└── server.js                   # Project Entry point
 ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+A few different featrues
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+# Log in system
+The website employs *bcrypt.js* to securely hash and store user passwords in MongoDB. Only registered users are permitted to log in.
+<img src="assets/images/log-in.png" alt="Logo" >
+
+# Url Protection
+I utilized *express-session* to secure endpoints, ensuring that only logged-in users can access certain pages. This also prevents customers from accessing administrator pages.
+
+<img src="assets/images/unauthorized.png" alt="Logo" >
+
+# Admin
+Administrators have the capability to create, delete, and edit meal kits through the admin panel.
+
+<img src="assets/images/cru.png" alt="Logo" >
+
+# Cart
+Sessions are used to track user activity, maintaining the contents of the cart even if the user leaves the website. Users can also modify the quantity of items in their cart.
+
+<img src="assets/images/cart.png" alt="Logo" >
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
