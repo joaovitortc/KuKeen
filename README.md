@@ -113,7 +113,7 @@ This section outlines some of the features of the website.
 
 # Log in system
 The website employs *bcrypt.js* to securely hash and store user passwords in MongoDB. Only registered users are permitted to log in.
-<img src="assets/log-in.png" alt="Logo" >
+<img src="assets/log-in.png" alt="Logo" width="300">
 
 # Url Protection
 I utilized *express-session* to secure endpoints, ensuring that only logged-in users can access certain pages. This also prevents customers from accessing administrator pages.
@@ -133,32 +133,14 @@ Sessions are used to track user activity, maintaining the contents of the cart e
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+</br>
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+</br>
 
 <!-- CONTACT -->
 ## Contact
@@ -167,9 +149,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 - [LinkedIn](https://www.linkedin.com/in/joaovitortc/)
 - [GitHub](https://github.com/joaovitortc)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+</br>
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
@@ -177,4 +157,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Special thanks to [Nick Romanidis](https://github.com/nick-romanidis) for guidance and support throughout the development process.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+</br>
+</br>
 
