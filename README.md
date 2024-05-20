@@ -69,6 +69,31 @@ The application follows the Model-View-Controller (MVC) pattern for efficient or
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+##File Structure
+
+```bash
+project-name/
+│
+├── src/
+│   ├── main.py           # The main script to run the project
+│   ├── module1.py        # First module
+│   └── module2.py        # Second module
+│
+├── tests/
+│   ├── test_main.py      # Tests for the main script
+│   └── test_module1.py   # Tests for the first module
+│
+├── docs/
+│   ├── index.md          # Project documentation index
+│   └── api.md            # API documentation
+│
+├── .gitignore            # Git ignore file
+├── README.md             # Project README file
+├── requirements.txt      # Python dependencies
+└── setup.py              # Setup script for packaging
+```
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
