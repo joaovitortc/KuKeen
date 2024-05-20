@@ -43,7 +43,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src="assets/images/kukeen.png" alt="Logo" >
 
 Kukeen is a full-stack web application designed to facilitate meal preparation with pre-packaged ingredients. </br>
 
