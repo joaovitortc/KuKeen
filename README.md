@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/joaovitortc/KuKeen">
-    <img src="assets/images/logo2.png" alt="Logo" width="80" height="80">
+    <img src="assets/images/store.svg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">KuKeen</h3>
