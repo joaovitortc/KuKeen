@@ -14,7 +14,7 @@
     A Full-stack Web Application
     <br />
     <br />
-    <a href="https://kukeen.onrender.com"><strong>Visit the Websit »</strong></a>
+    <a href="https://kukeen.onrender.com" target="_blank"><strong>Visit the Websit »</strong></a>
     <br />
   </p>
 </div>
