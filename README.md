@@ -57,17 +57,12 @@ The application follows the Model-View-Controller (MVC) pattern for efficient or
 
 ### Built With
 
-* ![MetaMask](https://img.shields.io/badge/MetaMask-e2761b?style=for-the-badge&logo=metamask&logoColor=white)
-* ![Truffle Suite](https://img.shields.io/badge/Truffle-5e4c9a?style=for-the-badge&logo=truffle&logoColor=white)
-* ![Ganache](https://img.shields.io/badge/Ganache-ff7043?style=for-the-badge&logo=ganache&logoColor=white)
-* ![Solidity](https://img.shields.io/badge/Solidity-363636?style=for-the-badge&logo=solidity&logoColor=white)
-* ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-* ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-* ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448c5?style=for-the-badge&logo=cloudinary&logoColor=white)
-* ![Auth0](https://img.shields.io/badge/Auth0-EB5424?style=for-the-badge&logo=auth0&logoColor=white)
-* ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-
-
+* ![EJS](https://img.shields.io/badge/EJS-026d3f?style=for-the-badge&logo=ejs&logoColor=white)
+* ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+* ![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+* ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+* ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+* ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
